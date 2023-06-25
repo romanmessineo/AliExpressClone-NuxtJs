@@ -40,13 +40,12 @@
                 Free Shipping
             </p>
 
-            <div class="flex items-c enter justify-end">
+            <div class="flex items-center justify-end">
                 <button @click="removeFromCart()" class="sm:hidden block -mt-0.5 hover:text-red-500">
                     <Icon name="material-symbols:delete-outline" size="20" />
                 </button>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -54,8 +53,8 @@
 import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
 
-const props = defineProps(['product', 'selectedArray']);
-const { product, selectedArray } = toRefs(props);
+const props = defineProps(['product', 'selectedArray'])
+const { product, selectedArray } = toRefs(props)
 
 const emit = defineEmits(['selectedRadio'])
 
@@ -73,8 +72,4 @@ const removeFromCart = () => {
 watch(() => isSelected.value, (val) => {
     emit('selectedRadio', { id: product.value.id, val: val })
 })
-
-
-
 </script>
-
