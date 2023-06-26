@@ -1,7 +1,7 @@
 <template>
     <MainLayout>
         <div id="CheckoutPage" class="mt-4 max-w-[1200px] mx-auto px-2">
-  
+
             <div class="md:flex gap-4 justify-between mx-auto w-full">
                 <div class="md:w-[65%]">
                     <div class="bg-white rounded-lg p-4">
@@ -9,11 +9,8 @@
                         <div class="text-xl font-semibold mb-2">Shipping Address</div>
 
                         <div v-if="currentAddress && currentAddress.data">
-                            <NuxtLink 
-                                to="/address"
-                                class="flex items-center pb-2 text-blue-500 hover:text-red-400"
-                            >
-                                <Icon name="mdi:plus" size="18" class="mr-2"/>
+                            <NuxtLink to="/address" class="flex items-center pb-2 text-blue-500 hover:text-red-400">
+                                <Icon name="mdi:plus" size="18" class="mr-2" />
                                 Update Address
                             </NuxtLink>
 
@@ -21,35 +18,31 @@
                                 <div class="underline pb-1">Delivery Address</div>
                                 <ul class="text-xs">
                                     <li class="flex items-center gap-2">
-                                        <div>Contact name:</div> 
+                                        <div>Contact name:</div>
                                         <div class="font-bold">{{ currentAddress.data.name }}</div>
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <div>Address:</div> 
+                                        <div>Address:</div>
                                         <div class="font-bold">{{ currentAddress.data.address }}</div>
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <div>Zip Code:</div> 
+                                        <div>Zip Code:</div>
                                         <div class="font-bold">{{ currentAddress.data.zipcode }}</div>
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <div>City:</div> 
+                                        <div>City:</div>
                                         <div class="font-bold">{{ currentAddress.data.city }}</div>
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <div>Country:</div> 
+                                        <div>Country:</div>
                                         <div class="font-bold">{{ currentAddress.data.country }}</div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
-                        <NuxtLink 
-                            v-else
-                            to="/address"
-                            class="flex items-center text-blue-500 hover:text-red-400"
-                        >
-                            <Icon name="mdi:plus" size="18" class="mr-2"/>
+                        <NuxtLink v-else to="/address" class="flex items-center text-blue-500 hover:text-red-400">
+                            <Icon name="mdi:plus" size="18" class="mr-2" />
                             Add New Address
                         </NuxtLink>
                     </div>
@@ -61,7 +54,7 @@
                     </div>
                 </div>
 
-                <div class="md:hidden block my-4"/>
+                <div class="md:hidden block my-4" />
                 <div class="md:w-[35%]">
                     <div id="PlaceOrder" class="bg-white rounded-lg p-4">
 
@@ -82,21 +75,11 @@
                         </div>
 
                         <form @submit.prevent="pay()">
-                            <div 
-                                class="border border-gray-500 p-2 rounded-sm" 
-                                id="card-element" 
-                            />
+                            <div class="border border-gray-500 p-2 rounded-sm" id="card-element" />
 
-                            <p 
-                                id="card-error" 
-                                role="alert" 
-                                class="text-red-700 text-center font-semibold" 
-                            />
+                            <p id="card-error" role="alert" class="text-red-700 text-center font-semibold" />
 
-                            <button 
-                                :disabled="isProcessing"
-                                type="submit"
-                                class="
+                            <button :disabled="isProcessing" type="submit" class="
                                 mt-4
                                     bg-gradient-to-r 
                                   from-[#FE630C] 
@@ -107,9 +90,7 @@
                                     font-semibold 
                                     p-1.5 
                                     rounded-full
-                                "
-                                :class="isProcessing ? 'opacity-70' : 'opacity-100'"
-                            >
+                                " :class="isProcessing ? 'opacity-70' : 'opacity-100'">
                                 <Icon v-if="isProcessing" name="eos-icons:loading" />
                                 <div v-else>Place order</div>
                             </button>
@@ -132,7 +113,6 @@
 
 
 <script setup>
-
 import MainLayout from '~/layouts/MainLayout.vue';
 import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
@@ -224,10 +204,10 @@ const stripeInit = async () => {
 const pay = async () => {
     if (currentAddress.value && currentAddress.value.data == '') {
         showError('Please add shipping address')
-        return 
+        return
     }
     isProcessing.value = true
-    
+
     let result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: { card: card },
     })

@@ -1,8 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     pages: true,
-
-    modules:[
+    modules: [
         'nuxt-icon',
         'nuxt-lodash',
         '@pinia/nuxt',
@@ -10,18 +9,16 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         '@nuxtjs/supabase'
     ],
-
     runtimeConfig: {
         public: {
-            stripePk: process.env.STRIPE_PK_KEY
+          stripePk: process.env.STRIPE_PK_KEY
         }
     },
-
     app: {
         head: {
-            script:[
-                { src: 'https://js.stripe.com/v3/', defer: true}
-            ],
+          script: [
+            { src: 'https://js.stripe.com/v3/', defer: true }
+          ],
         }
-    },
+      }
 })

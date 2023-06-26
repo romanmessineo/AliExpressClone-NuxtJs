@@ -1,10 +1,10 @@
 <template>
   <div
     :id="`ProductsComponent${product.id} `"
-    class="bg-white inline-block rounded hover:shadows-[0_0_10px_rgba(0,0,0,0.15)] cursor-pointer"
+    class="bg-white inline-block rounded hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.15)] cursor-pointer overflow-hidden"
   >
     <NuxtLink :to="`/item/${product.id}`">
-      <img class="rounded-t" :src="product.url" alt="" />
+      <img class="rounded-t hover:scale-105 transition-transform duration-300" :src="product.url" alt="" />
       <div id="ProductDetails">
         <span class="flex items-center justify-start gap-3 px-1 pt-1">
           <span class="text-[#FF6674] font-semibold">
